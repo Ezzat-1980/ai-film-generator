@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Animation Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="chat-container">
+    <h1>🎬 AI Animation Generator</h1>
+    
+    <form method="POST">
+        <textarea name="prompt" placeholder="Beskriv din filmidé... t.ex. 'En robot i rymden'" required></textarea>
+        <button type="submit">Generera Animation</button>
+    </form>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% if video_url %}
+        <div class="result">
+            <h2>🎥 Din Video är klar!</h2>
+            <video controls width="100%">
+                <source src="{{ video_url }}" type="video/mp4">
+                Din webbläsare stöder inte video.
+            </video>
+            <a href="{{ video_url }}" download><button>Nedladdning</button></a>
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
